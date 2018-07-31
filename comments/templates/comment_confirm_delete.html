@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block confirm_delete %}
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ comment }}"?</p>
+    <input type="submit" value="Confirm" />
+    <input type="" value="Confirm" />
+</form>
+{% endblock %}

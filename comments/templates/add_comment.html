@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load widget_tweaks %} {% block add_comment %}
+<p>Поля: {{ form.last_name.label }}, {{ form.first_name.label }} и {{ form.text.label }} должны быть заполнены.</p>
+
+<form method="POST" id="commentForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %} {% for error in form.non_field_errors %}
+    <div class="form-group has-errors text-danger small">
+        {{error}}
+    </div>
+    {% endfor %}
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+
+<script>
+    $("#id_region ").change(function() {
+        var url = $("#commentForm").attr("data-cities-url");
+        var regionId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'region': regionId
+            },
+            success: function(data) {
+                $("#id_city ").html(data);
+            }
+        });
+    });
+
+    $('#commentForm').find("input[type='text'], input[type='tel'], input[type='email'], select, textarea").each(function(index, element) {
+        $(element).addClass("form-control");
+    });
+
+    $("#id_phone").inputmask("(999) 999-99-99")
+</script>
+{% endblock %}

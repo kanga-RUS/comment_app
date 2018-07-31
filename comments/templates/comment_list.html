@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block comment_list %}
+    {% if comment_list %}
+        <h1 class="display-3">Список комментариев</h1>
+        <table id="example" class="table table-hover table-striped table-sm">
+            <thead>
+                <tr>
+                    <td><b>ID</b></td>
+                    <td><b>Фамилия</b></td>
+                    <td><b>Имя</b></td>
+                    <td><b>Отчество</b></td>
+                    <td><b>Регион</b></td>
+                    <td><b>Город</b></td>
+                    <td><b>Номер телефона</b></td>
+                    <td><b>Email</b></td>
+                    <td><b>Текст комментария</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comment_list %}
+                <tr onclick="window.location='{{ comment.id }}';">
+                    <div>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.last_name }}</td>
+                        <td>{{ comment.first_name }}</td>
+                        <td>{{ comment.middle_name }}</td>
+                        <td>{{ comment.region }}</td>
+                        <td>{{ comment.city }}</td>
+                        <td>{{ comment.phone }}</td>
+                        <td>{{ comment.email }}</td>
+                        <td>{{ comment.text }}</td>
+                        <td>
+                            <a href="{% url 'comment_delete' comment.id %}" class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </div>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+    <p>Комментариев пока нет. <a href="/comment">Добавить комментарий</a></p>
+
+{% endif %}
+
+{% endblock comment_list %}

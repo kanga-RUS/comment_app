@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block stat %}
+
+{% if context %}
+
+    <table id="example" class="table table-hover table-striped table-sm">
+        <thead>
+            <tr>
+                <td><b>Регион</b></td>
+                <td><b>Количество комментариев</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for set in context %}
+            <tr class="active" onclick="window.location='{{ set.region }}';">
+                <div>
+                    <td>{{ set.region__name }}</td>
+                    <td>{{ set.number }}</td>
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+
+    <p>Необходимого количества комментариев пока нет.</p>
+
+{% endif %}
+
+{% endblock stat %}

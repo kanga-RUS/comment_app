@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block detail_view %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <a href="{% url 'comment_list' %}" class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-arrow-left"></span> Назад к списку комментариев
+            </a>
+            <h2>Комментарий № {{ comment.id }}</h2>
+
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Фамилия</h3>
+            <p>{{ comment.last_name }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Имя</h3>
+            <p>{{ comment.first_name }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Отчество</h3>
+            <p>{{ comment.middle_name }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Регион</h3>
+            <p>{{ comment.region }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Город</h3>
+            <p>{{ comment.city }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Номер телефона</h3>
+            <p>{{ comment.phone }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Email</h3>
+            <p>{{ comment.email }}</p>
+            <h3 class="pb-3 mb-4 font-italic border-bottom">Текст комментария</h3>
+            <p>{{ comment.text }}</p>
+
+            <a href="{% url 'comment_delete' comment.id %}"><button type="submit" class="btn btn-danger btn-xs">Удалить комментарий</button></a> {% endblock %}
+
+        </div>
+    </div>
+</main>
